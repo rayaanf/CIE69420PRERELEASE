@@ -1,0 +1,48 @@
+DECLARE day [ ] ← {“Sunday”, “Monday”, “Tuesday”, “Wednesday”, “Thursday”, “Friday”, “Saturday”}
+DECLARE duration [ ] ← {8, 2, 2, 2, 2, 2, 4}
+DECLARE Price [ ] ← {2, 10, 10, 10, 10, 10, 3}
+DECLARE userDay, userArrivalHour, userDepartHour, parkingDuration, Count, freqparkingNum: INTEGER
+DECLARE digit, sum, parkingprice, pricepaid, dailyTotal, discount : REAL
+DECLARE userChoice : CHAR
+REPEAT
+PRINT “Enter day number”
+PRINT “1 – Sunday, 2 – Monday, 3 – Tuesday, 4 – Wednesday, 5 –Thursday, 6 – Friday, 7 – Saturday”
+INPUT userDay
+UNTIL userDay >= 1 AND userDay <= 7
+REPEAT
+PRINT “Enter time of arrival, No parking from Midnight (0000) to 07:59AM (0759) ”)
+INPUT userArrivalHour
+UNTIL userArrivalHour >= 8 AND userArrivalHour <=23
+REPEAT
+PRINT “Enter duration of parking: “
+PRINT “Sunday: Max 8 Hrs, Saturday: Max 3 Hrs, other days: Max 2 Hrs”
+INPUT parkingDuration
+UserDepartHour ← userArrivalHour + parkingDuration
+UNTIL parkingDuration <= duration[userDay] AND userDepartHour < 24 parkingPrice ← 2
+IF userArrivalHour < 16 THEN parkingPrice ← price[userDay] * parkingDuration
+PRINT “Day :”, day[userDay]
+PRINT “Time of arrival”, userArrivalHour
+PRINT “Time of departure : “, userDepartHour
+PRINT “Price without discount”, parkingPrice
+PRINT “Enter Y if F.I.N number available: “
+INPUT userChoice
+IF userChoice = Y THEN
+REPEAT
+PRINT “Enter frequent Identification Number”
+INPUT freqParkingNum
+UNTIL freqParkingNum >=0 AND freqParkingNum <= 99999
+INPUT “Enter frequent Identification number”, d1, d2, d3, d4, checkdigit
+sum ← (d1 * 5) + (d2 * 4) + (d3 * 3) + (d4 * 2) + (checkdigit * 1)
+remainder ← Sum MOD 11
+IF sum MOD 11 = 0 THEN
+IF userArrivalHour >=16 THEN
+ discount ← 0.5
+ELSE
+ discount ← 0.1
+ENDIF
+parkingPrice ← parkingPrice * (1 – discount)
+PRINT “Price with Discount: “, parkingPrice
+ELSE
+PRINT "Sorry, no discount available...”
+ENDIF
+ENDIF
